@@ -6,7 +6,7 @@
 /*   By: joklein <joklein@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 16:25:45 by joklein           #+#    #+#             */
-/*   Updated: 2025/07/03 17:07:17 by joklein          ###   ########.fr       */
+/*   Updated: 2025/07/07 14:47:08 by joklein          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int main( void )
     std::string d = "chaine2";
     
     ::swap(c, d);
-    std::cout << "c = " << c << ", d = " << d << std::endl;
+    std::cout << "\nc = " << c << ", d = " << d << std::endl;
     std::cout << "min( c, d ) = " << ::min( c, d ) << std::endl;
     std::cout << "max( c, d ) = " << ::max( c, d ) << std::endl;
     
