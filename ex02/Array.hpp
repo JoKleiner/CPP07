@@ -6,7 +6,7 @@
 /*   By: joklein <joklein@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 11:59:24 by joklein           #+#    #+#             */
-/*   Updated: 2025/07/10 17:07:00 by joklein          ###   ########.fr       */
+/*   Updated: 2025/07/11 10:08:17 by joklein          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ class Array
             this->m_array = new T[this->m_size];  };
 
         Array(const Array &other) : m_size(other.m_size) {
-            this->m_array = NULL;
-			*this = other;  };
+            this->m_array = new T[this->m_size];
+            for(unsigned int i = 0; i < this->m_size; i++)
+                this->m_array[i] = other.m_array[i];  };
         
         Array &operator=(const Array &other) {
             if(this == &other)
@@ -41,21 +42,15 @@ class Array
         
         ~Array() {
             if(this->m_array != NULL)
-                delete[] this->m_array;  };
+                delete[] this->m_array;
+                this->m_array = NULL;  };
 
         T& operator[](unsigned int index) {
             if (index >= m_size)
-                throw OutOfBounds();
+                throw std::out_of_range("Out of bounds");
             return m_array[index];  };
-        
-        class OutOfBounds : public std::exception
-        {
-            public:
-                const char *what() const noexcept override {
-                    return ("Index out of bounds!");  };
-        };
 
-        unsigned int size() {
+        unsigned int size() const {
                 return(this->m_size);  };
             
     private:
