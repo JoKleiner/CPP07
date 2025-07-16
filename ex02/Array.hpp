@@ -6,7 +6,7 @@
 /*   By: joklein <joklein@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 11:59:24 by joklein           #+#    #+#             */
-/*   Updated: 2025/07/16 09:33:29 by joklein          ###   ########.fr       */
+/*   Updated: 2025/07/16 15:32:19 by joklein          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 #include <iostream>
 
-template <typename T> class Array
+template <typename T>
+class Array
 {
   public:
 	Array();
