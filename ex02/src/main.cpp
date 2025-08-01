@@ -6,7 +6,7 @@
 /*   By: joklein <joklein@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 10:49:50 by joklein           #+#    #+#             */
-/*   Updated: 2025/08/01 15:27:17 by joklein          ###   ########.fr       */
+/*   Updated: 2025/08/01 15:49:18 by joklein          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int input_check(char **argv)
 		}
 		catch (const std::exception &e)
 		{
-			return (std::cerr << e.what() << '\n', 1);
+			return (std::cerr << e.what() << std::endl, 1);
 		}
 	}
 	return (0);
