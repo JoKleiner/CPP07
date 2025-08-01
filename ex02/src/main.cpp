@@ -6,7 +6,7 @@
 /*   By: joklein <joklein@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 10:49:50 by joklein           #+#    #+#             */
-/*   Updated: 2025/08/01 15:49:18 by joklein          ###   ########.fr       */
+/*   Updated: 2025/08/01 15:51:37 by joklein          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ int input_check(char **argv)
 	{
 		try
 		{
-			int num = std::stoi(argv[i]);
-			if (num < 0)
+			if (std::stoi(argv[i]) < 0)
 				throw(std::runtime_error("Error: a number is not positiv"));
 		}
 		catch (const std::exception &e)
@@ -44,6 +43,7 @@ int main(int argc, char **argv)
 		return (std::cerr << "Error: number of arguments incorrect" << std::endl, 1);
 	if (input_check(argv))
 		return (1);
+	
 	std::vector<int> vec;	
 	for(size_t i = 1; argv[i]; i++)
 		vec.push_back(std::stoi(argv[i]));
