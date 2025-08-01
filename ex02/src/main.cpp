@@ -6,7 +6,7 @@
 /*   By: joklein <joklein@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 10:49:50 by joklein           #+#    #+#             */
-/*   Updated: 2025/08/01 12:42:08 by joklein          ###   ########.fr       */
+/*   Updated: 2025/08/01 15:08:47 by joklein          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,10 @@ int input_check(char **argv)
 	return (0);
 }
 
-void print_before(char **argv)
+void print_vec(std::vector<int> vec)
 {
-	std::cout << "Before:\t";
-	for (size_t i = 1; argv[i]; i++)
-		std::cout << " " << argv[i];
+	for (size_t v = 0; v < vec.size(); v++)
+		std::cout << " " << vec[v] ;
 	std::cout << std::endl;
 }
 
@@ -45,6 +44,25 @@ int main(int argc, char **argv)
 		return (std::cerr << "Error: number of arguments incorrect" << std::endl, 1);
 	if (input_check(argv))
 		return (1);
-	print_before(argv);
-	vec_sort(argc, argv);
+	std::vector<int> vec;	
+	for(size_t i = 1; argv[i]; i++)
+		vec.push_back(std::stoi(argv[i]));
+	
+	std::cout << CYAN << BOLD << "Before:\t" << RESET;
+	print_vec(vec);
+	
+	auto start = std::chrono::high_resolution_clock::now();
+	vec = pmm_sort<std::vector<int>>(argv);
+	auto end = std::chrono::high_resolution_clock::now();
+	double duration = double(std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()) / 1000;
+	
+	std::cout << CYAN << BOLD << "After:\t" << RESET;
+	print_vec(vec);
+	std::cout << "Time to process a range of: " << argc - 1 << " elements with " << YELLOW << BOLD << "std::vector: " << GREEN << duration << RESET << " us\n";
+
+	start = std::chrono::high_resolution_clock::now();
+	pmm_sort<std::deque<int>>(argv);
+	end = std::chrono::high_resolution_clock::now();
+	duration = double(std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()) / 1000;
+	std::cout << "Time to process a range of: " << argc - 1 << " elements with " << YELLOW << BOLD << "std::deque:  " << GREEN<< duration << RESET << " us\n";
 }
